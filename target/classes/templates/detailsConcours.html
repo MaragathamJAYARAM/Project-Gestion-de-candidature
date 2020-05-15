@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1000/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: header"></head>
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+	<div id="header"></div>
+	<div class="container">
+
+		<form action="#" th:action="@{/postuler}" th:object="${concoursDemande}" method="post">
+			<h1 class="text-uppercase" th:text="*{nom_ccs}"></h1>
+			<span th:if="@{'/image/'+ *{ccs_ID}}">
+				<img id="img" src="#" th:src="@{'/image/'+ *{ccs_ID}}" alt="Concours image" width="150" height="150" />
+			</span>
+			<span th:unless="@{'/image/'+ *{ccs_ID}}"></span>
+			<table class="table">
+				<tr>
+					<td>Concours ID :</td>
+					<td colspan="2"><input type="text" class="form-control" th:field="*{ccs_ID}" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Nom du Concours :</td>
+					<td colspan="2"><input type="text" class="form-control" th:field="*{nom_ccs}" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Date :</td>
+					<td colspan="2"><input type="text" class="form-control" th:field="*{date_css}" readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Description :</td>
+					<td colspan="2"><textarea type="text" width="800px" class="form-control" th:field="*{description_ccs}"
+							readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td >
+						<a th:href="@{'/postuler/' + *{ccs_ID}}"
+							class="btn btn-primary btn-xs">Postuler</button></td>
+					<td><button type="button" class="btn btn-primary btn-xs" onclick="window.history.back();">Liste des concours</button></td>
+				</tr>			
+			</table>
+		</form>
+	</div>
+	<div th:replace="common/header :: footer"></div>
+</body>
+</html>

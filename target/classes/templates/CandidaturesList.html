@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1000/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: header"></head>
+
+<body>
+	<div th:replace="common/header :: navbar"></div>
+	<div class="container">
+		<h1>Candidatures :</h1>
+
+		<table class="table">
+			<thead>
+				<div class="row">
+					<div class="col">
+						<th text="Concours"></th>
+					</div>
+					<div class="col">
+						<th text="Concours">Concours</th>
+					</div>
+					<div class="col">
+						<th text="Date">Date</th>
+					</div>
+					<div class="col">
+						<th text="Statut">Statut</th>
+					</div>
+
+				</div>
+			</thead>
+			<tbody>
+
+				<tr th:each="cdu : ${listCdu}">
+					<td>
+						<span th:if="@{'/image/'+ *{cdu.ccs.ccs_ID}}">
+
+							<img id="img" src="#" th:src="@{'/image/'+ *{cdu.ccs.ccs_ID}}" alt="Concours image"
+								height="50" />
+						</span>
+						<span th:unless="@{'/image/'+ *{ccs_ID}}"></span>
+					</td>
+
+					<td th:text="${cdu.ccs.nom_ccs}"></td>
+					</td>
+
+					<td th:text="${cdu.date_transmis}"></td>
+
+					<span th:if="${session.CdaLogin != null}">
+
+						<td>
+							<span th:if="${cdu.Statut_cdu.statut_ID} &lt; 103" class=" badge badge-pill badge-primary"
+								th:text="${cdu.Statut_cdu.nom_statut} "></span>
+							<span th:if="${cdu.Statut_cdu.statut_ID} == 104" class=" badge badge-pill badge-warning"
+								th:text="${cdu.Statut_cdu.nom_statut} "></span>
+							<span th:if="${cdu.Statut_cdu.statut_ID} &gt; 104 and ${cdu.Statut_cdu.statut_ID} &lt; 110"
+								class=" badge badge-pill badge-danger" th:text="${cdu.Statut_cdu.nom_statut} "></span>
+							<span th:if="${cdu.Statut_cdu.statut_ID} &gt; 109" class=" badge badge-pill badge-success"
+								th:text="${cdu.Statut_cdu.nom_statut} "></span>
+						</td>
+
+						<td width="33%">
+							<a th:href="${cdu.cdu_ID}" class="btn btn-secondary btn-xs pBtn">Aperçu</a>
+							<a th:if="${cdu.Statut_cdu.statut_ID} &lt; 103" th:href="@{'/updateCdu/' + ${cdu.cdu_ID}}"
+								class="btn btn-primary btn-xs mBtn">Modifier</a>
+							<a th:if="${cdu.Statut_cdu.statut_ID} &lt; 103" th:href="@{'/deleteCdu/' + ${cdu.cdu_ID}}"
+								class="btn btn-danger btn-xs dBtn">Suprimer</a>
+
+							<a th:if="${cdu.Statut_cdu.statut_ID} &gt; 104" th:href="@{'/archiverCda/' + ${cdu.cdu_ID}}"
+								class="btn btn-primary btn-xs">Archiver</a>
+						</td>
+					</span>
+					<span th:if="${session.RcuLogin != null}">
+
+						<td>
+							<span class=" badge badge-pill badge-secondary"
+								th:text="${cdu.Statut_cdu.nom_statut} "></span>
+
+						</td>
+
+						<td width="33%">
+							<a th:href="${cdu.cdu_ID}" class="btn btn-secondary btn-xs pBtn">Aperçu</a>
+
+							<a th:if="${cdu.Statut_cdu.statut_ID} &lt; 103" th:href="@{'/traiterCdu/' + ${cdu.cdu_ID}}"
+								class="btn btn-primary btn-xs">Traiter la candidature</a>
+							<a th:if="${cdu.Statut_cdu.statut_ID} == 104" th:href="@{'/accepterCdu/' + ${cdu.cdu_ID}}"
+								class="btn btn-success btn-xs">Accepter</a>
+							<a th:if="${cdu.Statut_cdu.statut_ID} == 104" th:href="@{'/refuserCdu/' + ${cdu.cdu_ID}}"
+								class="btn btn-danger btn-xs">Refuser</a>
+							<a th:if="${cdu.Statut_cdu.statut_ID} &gt; 104" th:href="@{'/archiverRcu/' + ${cdu.cdu_ID}}"
+								class="btn btn-primary btn-xs">Archiver la candidature</a>
+						</td>
+					</span>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="display: flex; justify-content: space-around"><a href="/concoursListecadidat"
+			class="btn btn-primary btn-xs">Nouvelle Candidature</a></div>
+	<div th:replace="common/header :: footer"></div>
+
+
+
+	<!-- Modal script for delete Button-->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Suppression de candidature</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Confirmez vous la supression ?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+					<a href="" class="btn btn-danger" id="delref">Oui</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal script for update Button-->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modTitle">Modification de candidature</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body"
+					th:text="'Vous pouvez mettre à jour cette candidature avec votre fichier CV actuel. Confirmez vous que vous voulez utiliser '  + ${Candidat?.cv}">
+					Vous pouvez mettre à jour cette candidature avec votre fichier CV actuel.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+					<a href="" class="btn btn-danger" id="editref">Oui</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Modal script for preview Button-->
+	<div th:each="cdu : ${listCdu}" class="modal fade " th:id="'prModal' + ${cdu.cdu_ID}" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="prTitle"
+						th:text="'Candidature de ' + ${cdu.cda.prenom_cda} + ' ' + ${cdu.cda.nom_cda}+ ' au concours '+ ${cdu.ccs.nom_ccs}">
+						</td>
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span th:if="${cdu.Statut_cdu.statut_ID} &lt; 103" class=" badge badge-pill badge-primary"
+						th:text="${cdu.Statut_cdu.nom_statut} "></span>
+					<span th:if="${cdu.Statut_cdu.statut_ID} == 104" class=" badge badge-pill badge-warning"
+						th:text="${cdu.Statut_cdu.nom_statut} "></span>
+					<span th:if="${cdu.Statut_cdu.statut_ID} &gt; 104 and ${cdu.Statut_cdu.statut_ID} &lt; 110"
+						class=" badge badge-pill badge-danger" th:text="${cdu.Statut_cdu.nom_statut} "></span>
+					<span th:if="${cdu.Statut_cdu.statut_ID} &gt; 109" class=" badge badge-pill badge-success"
+						th:text="${cdu.Statut_cdu.nom_statut} "></span>
+					<span th:text="'Transmise le ' + ${cdu.date_transmis}">
+					</span>
+					<span th:if="${cdu.date_traitement != null}" th:text="'Traitée le ' + ${cdu.date_traitement}">
+					</span>
+					<hr />
+					<div th:text="'Téléphone : ' + ${cdu.cda.telephone}">
+					</div>
+					<div th:text="'Numéro de sécurité sociale : ' + ${cdu.cda.securite_sociale}">
+					</div>
+					<div>
+						<a th:text="'Facebook : ' + ${cdu.cda.facebook}" th:href="${cdu.cda.facebook}"></a>
+					</div>
+					<div>
+						<a th:text="'Instagram : ' + ${cdu.cda.instagram}" th:href="${cdu.cda.instagram}"></a>
+					</div>
+					<div>
+						<a th:text="'Twitter : ' + ${cdu.cda.twitter}" th:href="${cdu.cda.twitter}"></a>
+					</div>
+					<hr />
+					<div th:text="'Votre adresse : ' + ${cdu.cda.monAdresse.numero} + ' ' + ${cdu.cda.monAdresse.rue}">
+					</div>
+					<div
+						th:text="${cdu.cda.monAdresse.maVille.ville_code_postal} + ' ' + ${cdu.cda.monAdresse.maVille.ville_nom_reel}">
+					</div>
+					<hr />
+					<div th:text="'Ma bio : ' + ${cdu.cda.biographie}">
+					</div>
+					<hr />
+					<div th:text="'Date du concours : ' + ${cdu.ccs.date_css}">
+					</div>
+					<div th:text="'Concours : ' + ${cdu.ccs.description_ccs}">
+					</div>
+					<hr />
+					<div>
+						<img th:id="'cv' + ${cdu.cdu_ID}" th:src="'uploads/' + ${cdu.fichier_CV}" alt="Mon CV"
+							width="500" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer l'aperçu</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>
