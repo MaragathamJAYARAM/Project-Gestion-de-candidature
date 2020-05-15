@@ -1,6 +1,5 @@
 # GeekJob
 - [Source code on GitHub](https://github.com/MaragathamJAYARAM/Project-Gestion-de-candidature)
-- [Documents de travail](https://drive.google.com/open?id=1OoIKnG5pOkRZXcZgfIKC1kfTELeFv63v)
 - [Demo Vidéo](https://youtu.be/5dY8kilbNk4)
 
 ### Description  
