@@ -1,11 +1,11 @@
 # GeekJob
-- [Source code on GitHub](https://github.com/maximej/GestionCandidature)
+- [Source code on GitHub](https://github.com/MaragathamJAYARAM/Project-Gestion-de-candidature)
 - [Documents de travail](https://drive.google.com/open?id=1OoIKnG5pOkRZXcZgfIKC1kfTELeFv63v)
 - [Demo Vidéo](https://youtu.be/5dY8kilbNk4)
 
 ### Description  
 
-Fonction : Cette application permet de gerer des candidatures à des concours. Un système d’information qui permet d’enregistrer une liste de concours par les recruteurs, et permet aux candidats de créer une demande de candidature aux concours qui lui sont accessibles à partir de son espace personnel. Le processus de candidature se déroule en plusieurs phases : Transmis par le candidat, En traitement, puis Accepté ou Refusé par le recruteur. Les candidatures peuvent ensuite etre archivées. La création d’une candidature passe par le renseignement d’une fiche d’information du candidat qui doit inclure l’import de son fichier de CV. L’interface des utilisateurs et des recruteurs permet de suivre l'évolution du statut de la canidature.  
+Fonction : Cette application permet de gerer des candidatures aux concours. Un système d’information qui permet d’enregistrer une liste de concours par les recruteurs, et permet aux candidats de créer une demande de candidature aux concours qui lui sont accessibles à partir de son espace personnel. Le processus de candidature se déroule en plusieurs phases : Transmis par le candidat, En traitement, puis Accepté ou Refusé par le recruteur. Les candidatures peuvent ensuite etre archivées. La création d’une candidature passe par le renseignement d’une fiche d’information du candidat qui doit inclure l’import de son fichier de CV. L’interface des utilisateurs et des recruteurs permet de suivre l'évolution du statut de la canidature.  
 
 
 ### Installation  
@@ -25,7 +25,7 @@ Les étapes pour installer GeekJobs :
 
 ### Utilisation 
 
-Pour lancer cette application Spring Boot depuis votre ordinateur local vous pouvez executer la méthode 'main' qui se trouve dans la classe '/src/main/java/com/GeekJob/concoursDEV/ConcoursDevApplication.java' depuis votre IDE. Rendez vous à l'adresse http://localhost:9020/ et inscrivez vous en tant que candidat en mettant un email, un mot de passe en en cliquant sur le bouton **s'inscrire**. Vous pouvez vous connecter en tant qu'administrateur avec les accés **admin@GeekJob.com, 1234**.
+Pour lancer cette application Spring Boot depuis votre ordinateur local vous pouvez executer la méthode 'main' qui se trouve dans la classe '/src/main/java/com/GeekJob/concoursDEV/ConcoursDevApplication.java' depuis votre IDE. Rendez vous à l'adresse http://localhost:8080/ et inscrivez vous en tant que candidat en mettant un email, un mot de passe en en cliquant sur le bouton **s'inscrire**. Vous pouvez vous connecter en tant qu'administrateur avec les accés **admin@GeekJob.com, 1234**.
 
 Les applications Spring Boot peuvent aussi être lancées en ligne de commande avec [le plugin Spring Boot Maven](https://docs.spring.io/spring-boot/docs/current/reference/html/build-tool-plugins.html#build-tool-plugins-maven-plugin) ou être déployées sur [OpenShift](https://docs.openshift.com/container-platform/3.9/cli_reference/get_started_cli.html).
 
@@ -43,10 +43,8 @@ Ce projet à été fait dans le cadre de la formation de **Concepteur / Developp
 - JPA
 
 ### Auteurs  
-
-[Voici l'équipe du projet :](https://github.com/maximej/GestionCandidature/contributors)
+Voici l'équipe du projet :
 - [Maragatham](https://github.com/MaragathamJAYARAM)
-- [Gueni](hhttps://github.com/little-devop)
 - [MaximeJ](https://github.com/maximej)
 
 
