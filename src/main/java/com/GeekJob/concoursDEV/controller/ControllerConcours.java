@@ -54,10 +54,8 @@ public class ControllerConcours {
 
 	@RequestMapping(value = "/logo", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getImage() throws IOException {
-
 		ClassPathResource imgFile = new ClassPathResource("static/Logo.png");
 		byte[] bytes = StreamUtils.copyToByteArray(imgFile.getInputStream());
-
 		return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(bytes);
 	}
 
@@ -177,7 +175,7 @@ public class ControllerConcours {
 
 	@RequestMapping("/concoursListeActive")
 	public String viewListeConcourActive(Model model) {
-		List<concours> listConcours = service.listAll();
+		List<concours> listConcours = service.listAllCda();
 		model.addAttribute("listConcours", listConcours);
 		return "ConcoursListBack";
 	}
