@@ -25,7 +25,11 @@
 						</tr> -->
 						<tr>
 							<td>Statut :</td>
-							<td colspan="3"><input type="number" class="form-control" th:field="*{statutrcu}" min="301" max="303" required/></td>
+							<td colspan="3"><select id="statutrcu" class="custom-select" th:field="*{statutrcu}">
+									<option th:each="dropDownItem : ${stuRcu}"
+										th:value="${dropDownItem.getStatut_ID()}"
+										th:text="${dropDownItem.toString()}" />
+								</select></td>
 						</tr>
 						<tr>
 								

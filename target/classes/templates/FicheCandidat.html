@@ -23,10 +23,11 @@
 						<div class="col">
 							<label for="genre_F">Votre civilité : </label>
 							<select id="genre_F" class="custom-select" th:field="*{genre}">
-								<option value="">
-								<option value="M.">M.
-								<option value="Mme.">Mme.
-							</select> </div>
+								<option value=""></option>
+								<option value="M.">M.</option>
+								<option value="Mme.">Mme.</option>
+							</select> 
+						</div>
 						<div class="col">
 							<label for="prenom_F">Prénom : </label>
 							<input id="prenom_F" type="text" class="form-control" th:field="*{prenom_cda}"

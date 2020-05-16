@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
@@ -28,6 +31,7 @@ import javax.servlet.http.HttpSession;
 import com.GeekJob.concoursDEV.entity.Candidat;
 import com.GeekJob.concoursDEV.entity.Candidature;
 import com.GeekJob.concoursDEV.entity.Recruteur;
+import com.GeekJob.concoursDEV.entity.Statut;
 import com.GeekJob.concoursDEV.entity.Utilisateur;
 import com.GeekJob.concoursDEV.entity.concours;
 
@@ -36,6 +40,9 @@ import com.GeekJob.concoursDEV.service.CandidatureService;
 import com.GeekJob.concoursDEV.service.ConcoursService;
 import com.GeekJob.concoursDEV.service.FilesStorageService;
 import com.GeekJob.concoursDEV.service.VilleService;
+
+import freemarker.core.CollectionAndSequence;
+
 import com.GeekJob.concoursDEV.service.RecruteurService;
 import com.GeekJob.concoursDEV.service.StatutService;
 import com.GeekJob.concoursDEV.service.UtilisateurService;
@@ -269,6 +276,11 @@ public class ControllerConcours {
 	public String newRcu(Model model) {
 		Recruteur recruteur = new Recruteur();
 		model.addAttribute("recruteur", recruteur);
+		List<Statut> stuRcu = new ArrayList<Statut>();
+		stuRcu.add(serviceStatut.get(301));
+		stuRcu.add(serviceStatut.get(302));
+		stuRcu.add(serviceStatut.get(303));
+		model.addAttribute("stuRcu", stuRcu);
 		return "NouveauRecruteur";
 	}
 
@@ -298,6 +310,11 @@ public class ControllerConcours {
 		ModelAndView mav = new ModelAndView("ModifieRecruteur");
 		Recruteur recruteurDemande = serviceRcu.get(id);
 		mav.addObject("recruteurDemande", recruteurDemande);
+		List<Statut> stuRcu = new ArrayList<Statut>();
+		stuRcu.add(serviceStatut.get(301));
+		stuRcu.add(serviceStatut.get(302));
+		stuRcu.add(serviceStatut.get(303));
+		mav.addObject("stuRcu", stuRcu);
 		return mav;
 	}
 
@@ -306,25 +323,28 @@ public class ControllerConcours {
 		System.out.println(((Utilisateur) session.getAttribute("RcuLogin")).getEmail());
 		// Check existing user
 		if (serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()) == null) {
-			recruteur.getUtilRcu().setStatut_util(recruteur.getStatutrcu());
+			recruteur.getUtilRcu().setStatut_util(recruteur.getStatutrcu().getStatut_ID());
 			Utilisateur u = serviceUtil.save(recruteur.getUtilRcu());
 			recruteur.setUtilisateurId(u.getUtilisateurId());
 			serviceRcu.save(recruteur);
 		} else {
 			if (((Utilisateur) session.getAttribute("RcuLogin")).getEmail().equalsIgnoreCase("admin@GeekJob.com")) {
-				System.out.println("Admin staus modif"+serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
+				System.out.println(
+						"Admin staus modif" + serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
 				serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail())
-						.setStatut_util(recruteur.getStatutrcu());
+						.setStatut_util(recruteur.getStatutrcu().getStatut_ID());
 				serviceRcu.findByRcuID(recruteur.getRcuID()).setStatutrcu(recruteur.getStatutrcu());
 				serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail())
 						.setMotdepasse(recruteur.getUtilRcu().getMotdepasse());
-				System.out.println("Admin modif"+serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
+				System.out
+						.println("Admin modif" + serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
 				return "redirect:/rcuListe";
 			} else {
-				System.out.println("Common recruteur"+((Utilisateur) session.getAttribute("RcuLogin")).getEmail());
+				System.out.println("Common recruteur" + ((Utilisateur) session.getAttribute("RcuLogin")).getEmail());
 				serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail())
-				.setMotdepasse(recruteur.getUtilRcu().getMotdepasse());
-				System.out.println("Common recruteur nouveau user"+serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
+						.setMotdepasse(recruteur.getUtilRcu().getMotdepasse());
+				System.out.println("Common recruteur nouveau user"
+						+ serviceUtil.findByEmailIgnoreCase(recruteur.getUtilRcu().getEmail()));
 			}
 		}
 		return "redirect:/";
@@ -458,14 +478,15 @@ public class ControllerConcours {
 			monCda.setCv(file.getOriginalFilename());
 			serviceCda.save(monCda);
 			message = "Uploaded the file successfully: " + file.getOriginalFilename();
-			//return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+			// return ResponseEntity.status(HttpStatus.OK).body(new
+			// ResponseMessage(message));
 		} catch (Exception e) {
 			message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-			//return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+			// return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new
+			// ResponseMessage(message));
 		}
 		return "redirect:/profil";
 	}
-
 
 	////////// Maxime////////// Candidature Mangement
 

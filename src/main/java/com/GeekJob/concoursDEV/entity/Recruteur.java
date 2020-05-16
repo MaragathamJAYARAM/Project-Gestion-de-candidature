@@ -1,5 +1,6 @@
 package com.GeekJob.concoursDEV.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.GeekJob.concoursDEV.repository.StatutI;
+
 @Entity
 @Table(name = "recruteur", schema = "targetSchemaName")
 public class Recruteur {
@@ -15,7 +18,11 @@ public class Recruteur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int rcuID;
-	private int statutrcu;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "statutrcu")
+	private Statut statutrcu;
+	
 	private int utilisateurId;
 	
 	@ManyToOne
@@ -35,12 +42,18 @@ public class Recruteur {
 	public void setRcuID(int rcuID) {
 		this.rcuID = rcuID;
 	}
-	public int getStatutrcu() {
+	public Statut getStatutrcu() {
 		return statutrcu;
 	}
-	public void setStatutrcu(int statutrcu) {
-		this.statutrcu = statutrcu;
+	
+	
+	
+	public void setStatutrcu(Statut stu) {
+		this.statutrcu = stu;
 	}
+	
+	
+	
 	public int getUtilisateurId() {
 		return utilisateurId;
 	}
@@ -51,7 +64,7 @@ public class Recruteur {
 	public Recruteur(int rcu_ID, int statutrcu, int utilisateur_ID) {
 		super();
 		this.rcuID = rcu_ID;
-		this.statutrcu = statutrcu;
+		this.statutrcu.setStatut_ID(statutrcu);
 		this.utilisateurId = utilisateur_ID;
 	}
 	public Recruteur() {

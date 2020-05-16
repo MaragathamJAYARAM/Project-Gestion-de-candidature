@@ -1,39 +1,34 @@
 package com.GeekJob.concoursDEV.entity;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import java.util.List;
 
 @Entity
-@Table(name = "statut") 
-public class StatutCandidature {
+@Table(name = "statut", schema = "targetSchemaName") 
+public class Statut {
 	
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int statut_ID;
+	
 	private String nom_statut;
 	private String description_statut;
-	
-    @OneToMany(targetEntity = Candidature.class, mappedBy = "Statut_cdu")
-	private List<Candidature> mesCdu;
 
     
-	public StatutCandidature() {
+	public Statut() {
 	}
 	
     
-	public StatutCandidature(int statut_ID) {
+	public Statut(int statut_ID) {
 		super();
 		this.statut_ID = statut_ID;
 	}
@@ -61,17 +56,9 @@ public class StatutCandidature {
 	public void setDescription(String description_statut) {
 		this.description_statut = description_statut;
 	}
-
-	public List<Candidature> getMesCdu() {
-		return mesCdu;
+  
+	@Override
+	public String toString() {
+		return nom_statut;
 	}
-
-	public void setMesCdu(List<Candidature> mesCdu) {
-		this.mesCdu = mesCdu;
-	}
-	
-    
-    
-    
-    
 }
