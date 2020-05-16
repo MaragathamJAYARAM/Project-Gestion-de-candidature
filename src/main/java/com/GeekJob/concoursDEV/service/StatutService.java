@@ -23,6 +23,10 @@ public class StatutService {
 		return mesStatuts.findById(id).get();
 	}
 
+	public List<Statut> findStatutListe(String entityName) {
+		return mesStatuts.finfStatutList(entityName);
+	}
+	
 	public Statut finfByStatutID(Integer id) {
 		return mesStatuts.finfByStatutID(id);
 	}

@@ -46,13 +46,9 @@ public class Recruteur {
 		return statutrcu;
 	}
 	
-	
-	
 	public void setStatutrcu(Statut stu) {
 		this.statutrcu = stu;
 	}
-	
-	
 	
 	public int getUtilisateurId() {
 		return utilisateurId;

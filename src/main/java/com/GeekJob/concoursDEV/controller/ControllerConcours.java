@@ -276,10 +276,7 @@ public class ControllerConcours {
 	public String newRcu(Model model) {
 		Recruteur recruteur = new Recruteur();
 		model.addAttribute("recruteur", recruteur);
-		List<Statut> stuRcu = new ArrayList<Statut>();
-		stuRcu.add(serviceStatut.get(301));
-		stuRcu.add(serviceStatut.get(302));
-		stuRcu.add(serviceStatut.get(303));
+		List<Statut> stuRcu = serviceStatut.findStatutListe("Recruteur");
 		model.addAttribute("stuRcu", stuRcu);
 		return "NouveauRecruteur";
 	}
@@ -310,10 +307,7 @@ public class ControllerConcours {
 		ModelAndView mav = new ModelAndView("ModifieRecruteur");
 		Recruteur recruteurDemande = serviceRcu.get(id);
 		mav.addObject("recruteurDemande", recruteurDemande);
-		List<Statut> stuRcu = new ArrayList<Statut>();
-		stuRcu.add(serviceStatut.get(301));
-		stuRcu.add(serviceStatut.get(302));
-		stuRcu.add(serviceStatut.get(303));
+		List<Statut> stuRcu = serviceStatut.findStatutListe("Recruteur");
 		mav.addObject("stuRcu", stuRcu);
 		return mav;
 	}
