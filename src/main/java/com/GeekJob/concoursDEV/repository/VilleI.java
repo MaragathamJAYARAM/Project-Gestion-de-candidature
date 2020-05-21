@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.GeekJob.concoursDEV.entity.Candidature;
 import com.GeekJob.concoursDEV.entity.Ville;
 
 @Repository

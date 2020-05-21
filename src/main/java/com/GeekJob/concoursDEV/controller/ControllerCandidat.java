@@ -15,7 +15,6 @@ import com.GeekJob.concoursDEV.entity.Candidat;
 import com.GeekJob.concoursDEV.entity.Utilisateur;
 import com.GeekJob.concoursDEV.service.CandidatService;
 import com.GeekJob.concoursDEV.service.CandidatureService;
-import com.GeekJob.concoursDEV.service.StatutService;
 import com.GeekJob.concoursDEV.service.VilleService;
 
 @Controller

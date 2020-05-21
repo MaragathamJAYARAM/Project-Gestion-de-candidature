@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.GeekJob.concoursDEV.repository.StatutI;
-
 @Entity
 @Table(name = "recruteur", schema = "targetSchemaName")
 public class Recruteur {

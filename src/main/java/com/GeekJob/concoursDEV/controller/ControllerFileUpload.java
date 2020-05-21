@@ -33,18 +33,18 @@ public class ControllerFileUpload {
 
 	@PostMapping("/uploadCv")
 	public String uploadFile(@RequestParam("file") MultipartFile file, HttpSession session) {
-		String message = "";
+		//String message = "";
 		try {
 			storageService.save(file);
 			Utilisateur u = ((Utilisateur) session.getAttribute("CdaLogin"));
 			Candidat monCda = serviceCda.get(u.getUtilisateurId());
 			monCda.setCv(file.getOriginalFilename());
 			serviceCda.save(monCda);
-			message = "Uploaded the file successfully: " + file.getOriginalFilename();
+			//message = "Uploaded the file successfully: " + file.getOriginalFilename();
 			// return ResponseEntity.status(HttpStatus.OK).body(new
 			// ResponseMessage(message));
 		} catch (Exception e) {
-			message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+			//message = "Could not upload the file: " + file.getOriginalFilename() + "!";
 			// return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new
 			// ResponseMessage(message));
 		}

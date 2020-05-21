@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.http.HttpHeaders;
@@ -17,29 +15,16 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpSession;
-import com.GeekJob.concoursDEV.entity.Candidat;
-import com.GeekJob.concoursDEV.entity.Candidature;
-import com.GeekJob.concoursDEV.entity.Utilisateur;
 import com.GeekJob.concoursDEV.entity.concours;
 
-import com.GeekJob.concoursDEV.service.CandidatService;
-import com.GeekJob.concoursDEV.service.CandidatureService;
 import com.GeekJob.concoursDEV.service.ConcoursService;
-import com.GeekJob.concoursDEV.service.FilesStorageService;
-import com.GeekJob.concoursDEV.service.VilleService;
-
-import com.GeekJob.concoursDEV.service.RecruteurService;
-import com.GeekJob.concoursDEV.service.StatutService;
-import com.GeekJob.concoursDEV.service.UtilisateurService;
 
 @Controller
 public class ControllerConcours {
@@ -47,14 +32,7 @@ public class ControllerConcours {
 	@Autowired
 	private ConcoursService service;
 
-	@Autowired
-	private UtilisateurService serviceUtil;
-
-	@Autowired
-	private RecruteurService serviceRcu;
-
-
-///////////////////Maragatham////////Concours methods/////////
+	///////////////////Maragatham////////Concours methods/////////
 	@RequestMapping("/concoursListe")
 	public String viewListeConcours(Model model) {
 		List<concours> listConcours = service.listAll();

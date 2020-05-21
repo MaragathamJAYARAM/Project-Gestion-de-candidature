@@ -9,7 +9,9 @@
 		<form action="#" th:action="@{/saveRcu}" th:object="${recruteurDemande}" method="post">
 			<div class="container">
 				<h1 class="text-uppercase">Détails recruteur</h1>
-				<hr>
+				<div class="row">
+					<hr>
+				</div>
 				<table class="table-borderless">
 					<tr>
 						<td>Recruteur ID :</td>
@@ -34,7 +36,7 @@
 						<tr>
 							<td>Statut :</td>
 							<td>
-								<select id="statutrcu" class="custom-select" th:field="*{statutrcu}">
+								<select id="statutrcu" class="form-control dropdown-toggle" data-toggle="dropdown" th:field="*{statutrcu}">
 									<option th:each="dropDownItem : ${stuRcu}"
 										th:value="${dropDownItem.getStatut_ID()}"
 										th:text="${dropDownItem.toString()}" />
@@ -44,12 +46,15 @@
 					</span>
 				</table>
 				<div class="row">
+					<hr>
+				</div>
+				<div class="row">
 					<div class="col">
-						<button id="svBtn" type="submit" class="btn btn-success btn-xs"
+						<button id="svBtn" type="submit" class="btn btn-space btn-success btn-xs"
 							style="width: 100px;">Enregistrer</button>
 					</div>
 					<div class="col">
-						<button type="button" class="btn btn-primary btn-xs" onclick="window.history.back();"
+						<button type="button" class="btn btn-space btn-primary btn-xs" onclick="window.history.back();"
 							style="width: 100px;">Annuler</button>
 					</div>
 				</div>
