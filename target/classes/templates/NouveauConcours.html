@@ -69,45 +69,49 @@
 					</tr>
 					<tr>
 						<td>Date :</td>
-						<td colspan="3">
+						<td>
 							<input id="dateccs" type="date" class="form-control" th:field="*{date_css}" required>
 						</td>
 					</tr>
 					<tr>
 						<td>Description :</td>
-						<td colspan="3">
+						<td>
 							<textarea type="text" height="50" class="form-control" rows="5"
-								th:field="*{description_ccs}" />
-							</td>
-						</tr>
-						<tr>
-							<td>Statut :</td>
-							<td colspan="3"><input type="number" class="form-control" th:field="*{statutccs}" required="true" min="401" max="403" ></td>
-						</tr>
-						<tr>
-							<td>Concours créé par :</td>
-							<td colspan="3"><input type="text" class="form-control" id="Recruteur_ID" name="Recruteur_ID" th:value="${session.Vrcu.rcuID}" readonly="readonly"></td>
-						</tr>
-						<tr>
-							<td>Image :</td>
-								<td >
-									<img th:id="image_css" th:name="image_css" alt="Concours image" width="150" height="150">
-								<input id ="imageFile" type="file" name="imgfile" class="btn btn-default btn-xs">
-							</td>					
-
-						</tr>
-						</table>
-						<div class="row">
+								th:field="*{description_ccs}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>Statut :</td>
+						<td><input type="number" class="form-control" th:field="*{statutccs}" required="true" min="401"
+								max="403"></td>
+					</tr>
+					<tr>
+						<td>Concours créé par :</td>
+						<td><input type="text" class="form-control" id="Recruteur_ID" name="Recruteur_ID"
+								th:value="${session.Vrcu.rcuID}" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td>Image :</td>
+						<td>
+							<img th:id="image_css" th:name="image_css" alt="Concours image" width="150" height="150">
+							<input id="imageFile" type="file" name="imgfile" class="btn btn-default btn-xs"
+								accept="image/png, image/jpeg">
+						</td>
+					</tr>
+				</table>
+				<div class="row">
 					<hr>
 				</div>
-						<div class="row">
-							<div class="col"><button type="submit" class="btn btn-success btn-xs">Enregistrer</button></div>
-							<div class="col"><button type="button" class="btn btn-primary btn-xs" onclick="window.history.back();">Abandonner l'ajout de concours</button></div>
-						</div>
-					
+				<div class="row">
+					<div class="col"><button type="submit" class="btn btn-success btn-xs">Enregistrer</button></div>
+					<div class="col"><button type="button" class="btn btn-primary btn-xs"
+							onclick="window.history.back();">Annuler l'ajout de concours</button></div>
+					<div class="col"></div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
+	</div>
 	<div th:replace="common/header :: footer"></div>
 </body>
+
 </html>

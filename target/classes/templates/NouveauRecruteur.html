@@ -28,11 +28,13 @@
 						</tr> -->
 					<tr>
 						<td>Statut :</td>
-						<td><select id="statutrcu" class="form-control dropdown-toggle" data-toggle="dropdown"
+						<td>
+							<select id="statutrcu" class="form-control dropdown-toggle" data-toggle="dropdown"
 								th:field="*{statutrcu}">
 								<option th:each="dropDownItem : ${stuRcu}" th:value="${dropDownItem.getStatut_ID()}"
 									th:text="${dropDownItem.toString()}" />
-							</select></td>
+							</select>
+						</td>
 					</tr>
 				</table>
 				<div class="row">
@@ -41,7 +43,7 @@
 				<div class="row">
 					<div class="col"><button type="submit" class="btn btn-space btn-success btn-xs">Créer Profil</button></div>
 					<div class="col"><button type="button" class="btn btn-space btn-primary"
-							onclick="window.history.back();">Abandonner la
+							onclick="window.history.back();">Annuler la
 							création</button></div>
 				</div>
 			</div>
