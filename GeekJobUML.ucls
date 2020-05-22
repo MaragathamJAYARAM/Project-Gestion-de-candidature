@@ -4,7 +4,7 @@
   <class id="1" language="java" name="com.GeekJob.concoursDEV.entity.Utilisateur" project="GestionCandidature-master" 
     file="/GestionCandidature-master/src/main/java/com/GeekJob/concoursDEV/entity/Utilisateur.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="686" y="1162"/>    
+    <position height="-1" width="-1" x="732" y="1054"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -35,7 +35,7 @@
   <class id="4" language="java" name="com.GeekJob.concoursDEV.entity.Candidat" project="GestionCandidature-master" 
     file="/GestionCandidature-master/src/main/java/com/GeekJob/concoursDEV/entity/Candidat.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="917" y="498"/>    
+    <position height="-1" width="-1" x="979" y="501"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -55,7 +55,7 @@
   <class id="6" language="java" name="com.GeekJob.concoursDEV.entity.Recruteur" project="GestionCandidature-master" 
     file="/GestionCandidature-master/src/main/java/com/GeekJob/concoursDEV/entity/Recruteur.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="464" y="1125"/>    
+    <position height="-1" width="-1" x="516" y="1056"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -95,7 +95,7 @@
   <class id="10" language="java" name="com.GeekJob.concoursDEV.entity.Statut" project="GestionCandidature-master" 
     file="/GestionCandidature-master/src/main/java/com/GeekJob/concoursDEV/entity/Statut.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="254" y="1126"/>    
+    <position height="-1" width="-1" x="300" y="1052"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
